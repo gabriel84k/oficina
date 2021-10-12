@@ -167,7 +167,7 @@ export default {
     },
     methods: {
         refresh(){
-            
+             
             this.$store.commit('setPermiso', funciones.Array_json(this.objPermiso));
            
         }
