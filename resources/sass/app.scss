@@ -1,0 +1,25 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+@import '@mdi/font/css/materialdesignicons.css';
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//vuetify
+@import '~vuetify/dist/vuetify.min.css';
+
+
+//VueTable
+@import './Vuetable/DataTable.scss';
+
+
+
+//sauce 
+//@import '../sauce/scss/style.scss';
+
+//fontAwesome  - hay que instalar el modulo via npm de fontawesome
+@import '@fortawesome/fontawesome-free/css/all.min.css';

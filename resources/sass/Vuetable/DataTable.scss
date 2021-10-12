@@ -1,0 +1,90 @@
+.header{
+    background-color: $header-background;
+    
+}
+.alert-table{
+    position: relative;
+    padding: 0.65rem 1.25rem;
+    margin-bottom: 0;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.vuetable >thead > tr {
+    background:$table-thead-tr-background;
+    color:$table-thead-tr-color;
+    text-align:$table-thead-tr-text-align;
+    font-size: $table-thead-tr-font-size;
+   font-weight: 100 !important;
+}
+.vuetable >thead > tr > th{
+    cursor: auto;
+}
+
+.vuetable-slot > .v-card__actions{
+    height: 24px;
+    width: 50px;
+
+}
+.vuetable-body > tr > td {
+    vertical-align: baseline;
+    height: 50%;
+}
+.vuetable-body > tr >td{
+    font-size: 11px;
+    text-align: center;
+    
+}
+.vuetable-body > tr:hover{
+    cursor:pointer;
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 5%), 
+                0 4px 5px 0 rgb(0 0 0 / 5%), 
+                0 1px 10px 0 rgb(0 0 0 / 5%);
+    //background-color: #74d30070;
+}
+
+.md{
+    .header{
+        background-color: $header-background;
+        
+    }
+   
+    .alert-table{
+        position: relative;
+        padding: 0.65rem 1.25rem;
+        margin-bottom: 0;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+    .vuetable >thead > tr {
+        background:$table-thead-tr-background;
+        color:$table-thead-tr-color;
+        text-align:$table-thead-tr-text-align;
+        font-size: 11px;
+        vertical-align: middle;
+
+    }
+    .vuetable >thead > tr > th{
+        cursor: auto;
+        border-bottom: 2px solid #dee2e6; 
+    }
+    
+    .vuetable-body > tr >td{
+        font-size: 10px;
+        text-align: center;
+        color: rgba(26, 27, 26, 0.925);
+        vertical-align: baseline;
+    }
+}
+
+div > .modal{
+    overflow: auto;
+}
+.mostar{ display:block; }
+.ocultar{ display:none; }
+.visibilidad { display:none;}
+
+.mytable, #mytable{
+    overflow-x: auto;
+    font-size: 12px !important;
+}
+
