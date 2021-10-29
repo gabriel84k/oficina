@@ -153,7 +153,12 @@ export default {
           { visible:false, title: 'Usuarios', icon: 'mdi-account',modal:'Usuario',permiso:this.permiso.usuario},
           { visible:false, title: 'Clientes', icon: 'mdi-account-supervisor',modal:'Cliente',permiso:this.permiso.cliente},
           { visible:false, title: 'Calendario', icon: 'mdi-calendar-clock',modal:'Calendario',permiso:this.permiso.usuario},
-          { visible:false, title: 'CtaCte', icon: 'mdi-briefcase',
+          { visible:false, title: 'Admin', icon: 'mdi-nut',
+            submenu:[  {visible:true, title: 'Personal',modal:'', icon: 'account-plus',permiso:this.permiso},
+                       {visible:true, title: 'Red', modal:'', icon: 'mdi-nas',permiso:this.permiso},
+                    ]
+          },
+          { visible:true, title: 'CtaCte', icon: 'mdi-briefcase',
             submenu:[ {visible:true, title: 'Administrar',modal:'Ctacte_Administracion', icon: 'mdi-help-box',permiso:this.permiso},
                       {visible:true, title: 'Producto', modal:'Ctacte_Productos', icon: 'mdi-help-box',permiso:this.permiso},
                       {visible:true, title: 'Reporte', modal:'Ctacte_Reportes', icon: 'mdi-help-box',permiso:this.permiso},
