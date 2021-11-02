@@ -5,16 +5,16 @@
       <template v-slot:activator="{ on, attrs }" >
         <v-btn
           class="mx-2 " 
-          :title="sector.tipo" 
+          :title="tipo" 
           fab  
           outlined 
           x-small 
           v-bind="attrs"
           v-on="on"
-          :color="(sector.tipo == 'Nuevo')?'withe':'cyan'"
+          :color="(tipo == 'Nuevo')?'withe':'cyan'"
           @click="listar"
         >
-            <v-icon v-if="(sector.tipo == 'Modificando')" dark> mdi-pencil </v-icon>
+            <v-icon v-if="(tipo == 'Modificando')" dark> mdi-pencil </v-icon>
             <v-icon v-else >mdi-plus</v-icon>
           
         </v-btn>
@@ -66,7 +66,7 @@
           <v-spacer></v-spacer>
           <msjAlerta :msj="alerta"></msjAlerta>
           <v-btn color="primary" text @click="closealert()"> Salir </v-btn>
-          <v-btn v-if="(sector.tipo == 'Nuevo')" color="primary" text @click="nuevo()"> Guardar </v-btn>
+          <v-btn v-if="(tipo == 'Nuevo')" color="primary" text @click="nuevo()"> Guardar </v-btn>
           <v-btn v-else color="primary" text @click="modificar()"> Modificar </v-btn>
         </v-card-actions>
       </v-card>
@@ -76,7 +76,7 @@
 </template>
 <script>
 export default {
-  props: ['sector'],
+  props: ['sector','tipo'],
   data() {
     return {
      

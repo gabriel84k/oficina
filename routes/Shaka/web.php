@@ -11,6 +11,12 @@ Route::group(['prefix' => '/Shaka'], function () {
             #-[Resource]:
             Route::resource('/data', App\Http\Controllers\Shaka\SectorController::class)->name('*','index');
         });
+        Route::group(['prefix' => '/Puesto'], function () {
+            #-[Get]:
+            
+            #-[Resource]:
+            Route::resource('/data', App\Http\Controllers\Shaka\PuestoController::class)->name('*','index');
+        });
     });
 
 });
