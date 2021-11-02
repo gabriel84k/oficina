@@ -150,6 +150,7 @@ export default {
             permiso:{  
                 menu:{"ticket":false,"usuario":false,"conf.":false,"cliente":false,"calendario":false,"ctacte":false,"presupuesto":false,"nota":false,"galeria":false},
                 ticket:{"nuevo":false,"modificar":false,"eliminar":false,"asociar":false,'modificarasociado':false,"pago":false},
+                admin:{"personal":false,"red":false},
                 cliente:{"nuevo":false,"modificar":false,"eliminar":false},
                 usuario:{"nuevo":false,"modificar":false,"eliminar":false},
                 config:{"sistema":false},

@@ -19,7 +19,8 @@ class Red extends Model
     protected $fillable = [
         'id',
         'personal_id',
-        'spt_id'
+        'spt_id',
+        
        
     ];
 

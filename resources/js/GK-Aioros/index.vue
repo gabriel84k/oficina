@@ -123,6 +123,10 @@ import Ctacte_Reportes from './Page/Camus/Reporte/view'
 import Ctacte_Administracion from './Page/Camus/Cliente/view'
 import Ctacte_Conf from './Page/Camus/Configuración/view'
 
+/* Proyecto Shaka */
+import Red from './Page/Shaka/view.vue'
+
+
 /* Proyecto MU */
 import Presupuesto from './Page/MU/view'
 
@@ -132,6 +136,8 @@ import crud from './Page/Shura/crud'
 
 /* Proyecto Ikki */
 import Galeria from './Page/Ikki/albun.vue'
+
+
 
 /* Tablero */
 import Estadistica from './Estadistica/view.vue'
@@ -153,9 +159,9 @@ export default {
           { visible:false, title: 'Usuarios', icon: 'mdi-account',modal:'Usuario',permiso:this.permiso.usuario},
           { visible:false, title: 'Clientes', icon: 'mdi-account-supervisor',modal:'Cliente',permiso:this.permiso.cliente},
           { visible:false, title: 'Calendario', icon: 'mdi-calendar-clock',modal:'Calendario',permiso:this.permiso.usuario},
-          { visible:false, title: 'Admin', icon: 'mdi-nut',
+          { visible:true, title: 'Admin', icon: 'mdi-nut',
             submenu:[  {visible:true, title: 'Personal',modal:'', icon: 'account-plus',permiso:this.permiso},
-                       {visible:true, title: 'Red', modal:'', icon: 'mdi-nas',permiso:this.permiso},
+                       {visible:true, title: 'Red', modal:'Red', icon: 'mdi-nas',permiso:this.permiso},
                     ]
           },
           { visible:true, title: 'CtaCte', icon: 'mdi-briefcase',
@@ -190,7 +196,8 @@ export default {
     Presupuesto,
     Notas , crud,
     Estadistica,
-    Galeria
+    Galeria,
+    Red
     // Modal
   },
   computed: {
@@ -221,7 +228,7 @@ export default {
   methods: {
     metodo_permiso(m){
       console.log(m.modal)
-      if ((m.modal != 'Configuracion')&&(m.modal != 'Ctacte_Administracion') ){
+      if ((m.modal != 'Configuracion')&&(m.modal != 'Ctacte_Administracion') &&(m.modal != 'Red')){
           return JSON.parse(m.permiso)
       }else{
           return m.permiso

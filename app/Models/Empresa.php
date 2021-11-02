@@ -48,5 +48,9 @@ class Empresa extends Model
     {
         return $this->belongsToMany(Aldebaran\Sistema::class,'empresa_sistemas')->withPivot('sistema_id');
     }
+    public function sector(){
+        return $this->hasMany(Sector::class,'empresa_id','id');
+
+    }
    
 }
