@@ -35,5 +35,6 @@ Route::group(['prefix' => '/home','middleware' => ['verified']], function () {
     require __DIR__ . '/MU/web.php';
     require __DIR__ . '/Shura/web.php';
     require __DIR__ . '/Ikki/web.php';
+    require __DIR__ . '/Shaka/web.php';
     Route::post('/logout', 'API\AuthController@logout');
 });

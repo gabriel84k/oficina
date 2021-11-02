@@ -2,8 +2,8 @@
     <div>
         <!-- Sectores -->
         <v-row>
-           
-            <v-col cols="4" v-for="(index,item) in sector" :key="index">
+            
+            <v-col cols="4" v-for="(item,index) in red[0].sector" :key="index">
                 <v-card
                     elevation="24"
                     max-width="444"
@@ -19,7 +19,7 @@
                         </v-list-item-avatar>
                         <v-list-item-content>
                         <v-list-item-title>{{item.nombre}}</v-list-item-title>
-                        <v-list-item-subtitle>{{item.detalle}}</v-list-item-subtitle>
+                        <v-list-item-subtitle>{{item.descripcion}}</v-list-item-subtitle>
                         </v-list-item-content>
                         
                     </v-list-item>
@@ -38,16 +38,7 @@
 
                     <v-row >
                         <v-col cols="12" align="center">
-                            <v-btn
-                                color="primary"
-                                elevation="2"
-                                icon
-                                @click="nuevoSector()"
-                            >
-                            <v-icon dark>
-                                mdi-plus
-                            </v-icon>
-                        </v-btn>
+                             <CrudSector :sector="sector"></CrudSector>
                         </v-col>
                     </v-row>
 
@@ -64,6 +55,7 @@
                     </v-list>
                 </v-card>
             </v-col>
+           
         </v-row>
 
         <!-- Puestos -->
@@ -201,18 +193,38 @@
     </div>
 </template>
 <script>
+import CrudSector from './crud_Sector.vue'
 export default {
     props:[],
     data() {
         return {
             cyrcle:true,
-            red:[]
+            red:[],
+            sector:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Sector/data'},
+            page:'/home/Shaka/Red/Sector/data'
+
         }
     },
+    components:{
+        CrudSector
+    },
     mounted() {
-        
+        this.index()
     },
     methods: {
+        index(){
+
+            axios.get(this.page)
+                .then((response) => {
+                    console.log('Red')
+                    console.log(response.data.data)
+                    this.red = response.data.data
+                }).catch((error) => {
+                
+                })
+                .finally(() => false);
+         
+        },
         nevaRed(){
             
         }

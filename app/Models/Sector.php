@@ -18,7 +18,8 @@ class Sector extends Model
      */
     protected $fillable = [
         'id',
-        'detalle',
+        'nombre',
+        'descripcion',
         'estado',
         'empresa_id'
        
