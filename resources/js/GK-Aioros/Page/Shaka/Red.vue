@@ -11,7 +11,11 @@
                     class="mx-auto"
                 >
                     <v-system-bar lights-out></v-system-bar>
-
+                    <v-row >
+                        <v-col cols="12" align="center">
+                            <CrudSector :sector="sector.tipo='Modificando'"></CrudSector>
+                        </v-col>
+                    </v-row>
                     <v-list two-line>
                     <v-list-item>
                         <v-list-item-avatar>
