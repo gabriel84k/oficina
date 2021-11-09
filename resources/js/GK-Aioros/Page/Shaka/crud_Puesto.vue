@@ -50,9 +50,9 @@
                       
                         <v-select
                           v-model="vpuesto.estado"
-                          :items="items"
-                          :rules="[v => !!v || 'Se requiere un Item']"
-                          label="Item"
+                          :items="vpuesto.estado"
+                          :rules="[v => !!v || 'Se requiere un Estado']"
+                          label="Estado"
                           required
                         ></v-select>
                                     
@@ -90,9 +90,9 @@ export default {
               nombre:'', 
               detalle:'',
               valid:true,
-              estado:0
+              estado:['Activo', 'Inactivo']
           },
-      items:['Activo', 'inactivo']
+      
     }
   },
   watch:{

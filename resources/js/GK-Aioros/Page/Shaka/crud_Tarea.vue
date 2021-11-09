@@ -48,7 +48,7 @@
                     <v-col cols="12" md="6">
                         <v-select
                           v-model="vtarea.estado"
-                          :items="items"
+                          :items="vtarea.estado"
                           :rules="[v => !!v || 'Se requiere un Item']"
                           label="Item"
                           required
@@ -86,9 +86,9 @@ export default {
       vtarea:{
               nombre:'', 
               descripcion:'',
-              estado:0
+              estado:['Activo','Inactivo']
           },
-      items:['Activo','Inactivo']
+      
     }
   },
   watch:{
