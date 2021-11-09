@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shaka;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 use App\Models\Puesto;
 
 class PuestoController extends Controller
@@ -37,7 +38,29 @@ class PuestoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            
+        ]);
+        if ($validator->fails()) {
+            return \Response::json(['status'=>-1,'errors'=>$validator->errors(),'descripcion'=>'']);
+        }
+
+        try {
+
+            $user = Auth::user();
+            $campos = request()->all();
+           
+           
+            
+            $sector = (new Sector);
+            $sector->create($campos);
+
+            return \Response::json(['status'=>0,'descripcion'=>'Nuevo sector agregado','data'=>\json_encode($sector)]); 
+        } catch (\Throwable $th) {
+            return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo Sector','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
+        }
     }
 
     /**
