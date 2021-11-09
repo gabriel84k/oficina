@@ -46,11 +46,13 @@
                                     
                     </v-col>
                     <v-col cols="12" md="6">
-                        <v-text-field
-                            v-model="vtarea.estado"
-                            label="Estado"
-                            clearable
-                        ></v-text-field>
+                        <v-select
+                          v-model="vtarea.estado"
+                          :items="items"
+                          :rules="[v => !!v || 'Se requiere un Item']"
+                          label="Item"
+                          required
+                        ></v-select>
                                     
                     </v-col>
                 </v-row>
@@ -86,6 +88,7 @@ export default {
               descripcion:'',
               estado:0
           },
+      items:['Activo','Inactivo']
     }
   },
   watch:{

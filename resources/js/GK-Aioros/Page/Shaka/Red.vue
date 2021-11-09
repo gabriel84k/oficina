@@ -70,7 +70,7 @@
 
        
         <!--Puestos, Empleados y Tareas -->
-        <v-row >
+        <v-row v-if="red[0].sector.length > 0">
            
             <v-col cols="12" >
                 <v-card
@@ -91,7 +91,7 @@
                                         <h6>Puestos</h6>
                                     </v-col>
                                     <v-col cols="4"> 
-                                        <CrudPuesto :puesto="puesto" :tipo="'Nuevo'"></CrudPuesto>
+                                        <CrudPuesto :puesto="puesto" :tipo="'Nuevo'" ></CrudPuesto>
                                     </v-col>
                                 </v-app-bar>
                                
