@@ -46,5 +46,11 @@ class Puesto extends Model
         {
             return $this->belongsToMany(Tarea::class,'spt')->withPivot('tarea_id');
         }
+        public function personal()
+        {
+            return $this->belongsToMany(Personal::class,'reds')->withPivot('personal_id');
+        }
+       
+
 
 }

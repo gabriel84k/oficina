@@ -17,6 +17,18 @@ Route::group(['prefix' => '/Shaka'], function () {
             #-[Resource]:
             Route::resource('/data', App\Http\Controllers\Shaka\PuestoController::class)->name('*','index');
         });
+        Route::group(['prefix' => '/Empleado'], function () {
+            #-[Get]:
+            
+            #-[Resource]:
+            Route::resource('/data', App\Http\Controllers\Shaka\EmpleadoController::class)->name('*','index');
+        });
+        Route::group(['prefix' => '/Tarea'], function () {
+            #-[Get]:
+            
+            #-[Resource]:
+            Route::resource('/data', App\Http\Controllers\Shaka\TareaController::class)->name('*','index');
+        });
     });
 
 });

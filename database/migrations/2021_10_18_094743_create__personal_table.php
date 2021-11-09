@@ -19,7 +19,10 @@ class CreatePersonalTable extends Migration
             $table->integer('edad');
             $table->string('domicilio');            
             $table->string('telefono');            
-            $table->string('observacion');            
+            $table->string('observacion');        
+            $table->string('nrolegajo');    
+            $table->date('fechaingreso');
+            $table->string('qr');  
             $table->string('foto');    
             $table->boolean('temporal')->default(0);         
             $table->boolean('estado');            

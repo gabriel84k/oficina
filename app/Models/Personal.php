@@ -23,6 +23,9 @@ class Personal extends Model
         'domicilio',
         'telefono' ,
         'observacion' ,
+        'nrolegajo',
+        'fechaingreso',
+        'qr',
         'foto' ,
         'temporal',
         'estado',
@@ -57,9 +60,14 @@ class Personal extends Model
     {
         return $this->hasOne(Empresa::class,'id','empresa_id');
     }
-    public function red()
+    public function puesto()
     {
-        return $this->belongsToMany(Red::class,'personal_id','id');
+        return $this->belongsToOne(Puesto::class,'reds')->withPivot('puesto_id');
     }
+    public function tarea()
+    {
+        return $this->belongsToMany(Tarea::class,'reds')->withPivot('tarea_id');
+    }
+    
 
 }

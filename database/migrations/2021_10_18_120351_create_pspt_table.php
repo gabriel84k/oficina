@@ -19,9 +19,11 @@ class CreatePsptTable extends Migration
             $table->bigInteger('personal_id')->unsigned()->index();
             $table->foreign('personal_id')->references('id')->on('personals')->onDelete('cascade');
             
-            $table->bigInteger('spt_id')->unsigned()->index();
-            $table->foreign('spt_id')->references('id')->on('spt')->onDelete('cascade');
+            $table->bigInteger('puesto_id')->unsigned()->index();
+            $table->foreign('puesto_id')->references('id')->on('puestos')->onDelete('cascade');
 
+            $table->bigInteger('tarea_id')->unsigned()->index();
+            $table->foreign('tarea_id')->references('id')->on('tareas')->onDelete('cascade');
         });
     }
 

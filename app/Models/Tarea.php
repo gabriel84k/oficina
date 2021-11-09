@@ -19,7 +19,7 @@ class Tarea extends Model
     protected $fillable = [
         'id',
         'nombre',
-        'detalle',
+        'descripcion',
         'estado',
     ];
 

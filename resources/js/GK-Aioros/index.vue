@@ -125,6 +125,7 @@ import Ctacte_Conf from './Page/Camus/Configuración/view'
 
 /* Proyecto Shaka */
 import Red from './Page/Shaka/view.vue'
+import Personal from './Page/Shaka/Empleado/view.vue'
 
 
 /* Proyecto MU */
@@ -160,8 +161,8 @@ export default {
           { visible:false, title: 'Clientes', icon: 'mdi-account-supervisor',modal:'Cliente',permiso:this.permiso.cliente},
           { visible:false, title: 'Calendario', icon: 'mdi-calendar-clock',modal:'Calendario',permiso:this.permiso.usuario},
           { visible:true, title: 'Admin', icon: 'mdi-nut',
-            submenu:[  {visible:true, title: 'Personal',modal:'', icon: 'account-plus',permiso:this.permiso},
-                       {visible:true, title: 'Red', modal:'Red', icon: 'mdi-nas',permiso:this.permiso},
+            submenu:[  {visible:true, title: 'Personal',modal:'Personal', icon: 'account-plus',permiso:this.permiso.personal},
+                       {visible:true, title: 'Red', modal:'Red', icon: 'mdi-nas',permiso:this.permiso.red},
                     ]
           },
           { visible:true, title: 'CtaCte', icon: 'mdi-briefcase',
@@ -197,7 +198,8 @@ export default {
     Notas , crud,
     Estadistica,
     Galeria,
-    Red
+    Red,
+    Personal
     // Modal
   },
   computed: {
@@ -228,7 +230,7 @@ export default {
   methods: {
     metodo_permiso(m){
       console.log(m.modal)
-      if ((m.modal != 'Configuracion')&&(m.modal != 'Ctacte_Administracion') &&(m.modal != 'Red')){
+      if ((m.modal != 'Configuracion') && (m.modal != 'Ctacte_Administracion') ){
           return JSON.parse(m.permiso)
       }else{
           return m.permiso
@@ -250,10 +252,11 @@ export default {
       this.items[2].visible = menu.usuario
       this.items[3].visible = menu.cliente
       this.items[4].visible = menu.calendario
-      this.items[5].visible = menu.ctacte
-      this.items[6].visible = menu.presupuesto
-      this.items[7].visible = menu.nota
-      this.items[8].visible = menu.galeria
+      this.items[5].visible = menu.admin
+      this.items[6].visible = menu.ctacte
+      this.items[7].visible = menu.presupuesto
+      this.items[8].visible = menu.nota
+      this.items[9].visible = menu.galeria
       
 
     },

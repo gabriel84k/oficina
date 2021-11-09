@@ -11,11 +11,11 @@
           x-small 
           v-bind="attrs"
           v-on="on"
-          :color="(tipo == 'Nuevo')?'withe':'cyan'"
+          :color="(tipo == 'Nuevo')?'green':'cyan'"
           @click="listar"
         >
-            <v-icon v-if="(tipo == 'Modificando')" dark> mdi-pencil </v-icon>
-            <v-icon v-else >mdi-plus</v-icon>
+            <v-icon v-if="(tipo == 'Modificando')" dark outlined> mdi-pencil </v-icon>
+            <v-icon v-else outlined>mdi-plus</v-icon>
           
         </v-btn>
       </template>

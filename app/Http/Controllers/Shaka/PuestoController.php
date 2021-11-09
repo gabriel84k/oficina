@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Shaka;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Puesto;
+
 class PuestoController extends Controller
 {
     /**
@@ -46,7 +48,8 @@ class PuestoController extends Controller
      */
     public function show($id)
     {
-        //
+        $puesto = Puesto::with(['personal.tarea', 'tarea'])->find($id);
+        return \Response::json(['status'=>0,'descripcion'=>'Listados de Empleados por puestos y tareas por empleados','data'=>$puesto]);
     }
 
     /**
