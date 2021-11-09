@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Shaka;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Funciones\Funciones;
 
 use App\Models\Puesto;
 
@@ -49,17 +51,15 @@ class PuestoController extends Controller
 
         try {
 
-            $user = Auth::user();
-            $campos = request()->all();
-           
-           
             
-            $sector = (new Sector);
-            $sector->create($campos);
+            $campos = request()->all();
+            $campos['estado'] = Funciones::estado($campos['estado']);
+            $puesto = (new Puesto);
+            $puesto->create($campos);
 
-            return \Response::json(['status'=>0,'descripcion'=>'Nuevo sector agregado','data'=>\json_encode($sector)]); 
+            return \Response::json(['status'=>0,'descripcion'=>'Nuevo puesto agregado','data'=>\json_encode($puesto)]); 
         } catch (\Throwable $th) {
-            return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo Sector','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
+            return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo puesto','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
         }
     }
 
