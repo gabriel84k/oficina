@@ -53,7 +53,7 @@ class PuestoController extends Controller
 
             
             $campos = request()->all();
-            $campos['estado'] = Funciones::estado($campos['estado']);
+            $campos['estado'] = estado($campos['estado']);
             $puesto = (new Puesto);
             $puesto->create($campos);
 
