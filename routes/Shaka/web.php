@@ -13,7 +13,7 @@ Route::group(['prefix' => '/Shaka'], function () {
         });
         Route::group(['prefix' => '/Puesto'], function () {
             #-[Get]:
-            
+            Route::get('/listaCombobox', [App\Http\Controllers\Shaka\PuestoController::class,'listarCombo']);
             #-[Resource]:
             Route::resource('/data', App\Http\Controllers\Shaka\PuestoController::class)->name('*','index');
         });
