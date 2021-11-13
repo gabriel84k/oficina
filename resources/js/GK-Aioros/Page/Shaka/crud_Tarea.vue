@@ -55,6 +55,34 @@
                         ></v-select>
                                     
                     </v-col>
+                    <v-col cols="12" md="6">
+                      <v-container fluid>
+                        <v-combobox
+                          v-model="vtarea.puesto"
+                          :items="itemsPuesto"
+                          :search-input.sync="search"
+                          :hint="'Puesto que se asocia al Tarea'"
+                          hide-selected
+                          label="Seleccionar Tarea"
+                          single-line
+                          return-object
+                          persistent-hint
+                          small-chips
+                          item-text="nombre"
+                          item-value="id"
+                        >
+                          <template v-slot:no-data>
+                            <v-list-item>
+                              <v-list-item-content>
+                                <v-list-item-title>
+                                  No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </template>
+                        </v-combobox>
+                      </v-container>
+                    </v-col>
                 </v-row>
               
               </v-container>
@@ -78,15 +106,19 @@
 </template>
 <script>
 export default {
-  props: ['tarea','tipo'],
+  props: ['tarea','tipo','idSector'],
   data() {
     return {
-     
+      itemsPuesto: [ ],
+      search: null,
+      page:'/home/Shaka/Red/Puesto/listaCombobox',
       alerta: { mensaje: "", visible: false, tipo: 0 },
       vtarea:{
               nombre:'', 
               descripcion:'',
-              estado:['Activo','Inactivo']
+              estado:['Activo','Inactivo'],
+              puesto:'',
+              sector:this.idSector
           },
       
     }
@@ -94,16 +126,21 @@ export default {
   watch:{
     tarea(s){
       this.dialog = s.visible
+      this.listPuesto()
     }
+  },
+  mounted() {
+    
   },
   methods: {
         nuevo(){
-          
           
             let formData = new FormData();
             formData.append('nombre', this.vtarea.nombre)
             formData.append('descripcion', this.vtarea.descripcion)
             formData.append('estado', this.vtarea.estado)
+            formData.append('puesto_id', this.vpuesto.puesto.id)
+            formData.append('sector_id', this.vpuesto.sector)
             
             this.load=true
             try {
@@ -138,7 +175,15 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-      
+        },
+        listPuesto(){
+          axios.get(this.page)
+                .then((response) => {
+                    this.itemsPuesto= response.data
+                }).catch((error) => {
+                
+                })
+                .finally(() => false);
         },
         closealert() {
             this.tarea.visible = false;
