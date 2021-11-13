@@ -51,9 +51,15 @@ class Puesto extends Model
             return $this->belongsToMany(Personal::class,'reds')->withPivot('personal_id');
         }
         public function sector(){
-            
+
             return $this->belongsToMany(Sector::class,'spt')->withPivot('sector_id');
         }
 
+    # [Funciones especificas del Modelo] #
+
+        public static function combobox(){
+            $puesto = Puesto::select('nombre','id')->get();
+            return $puesto;
+        }
 
 }
