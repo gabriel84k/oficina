@@ -22,7 +22,7 @@ class SectorController extends Controller
         $empresa = $user->empresa;
         return \Response::json(['status'=>0,'descripcion'=>'Empresa','data'=>$empresa->with('sector.puesto')->get()]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -59,6 +59,7 @@ class SectorController extends Controller
             
             $sector = (new Sector);
             $sector->create($campos);
+            
 
             return \Response::json(['status'=>0,'descripcion'=>'Nuevo sector agregado','data'=>\json_encode($sector)]); 
         } catch (\Throwable $th) {
@@ -110,5 +111,10 @@ class SectorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listarCombo(){
+        $sector = Sector::combobox();
+        return $sector;
     }
 }

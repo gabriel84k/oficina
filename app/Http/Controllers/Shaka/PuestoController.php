@@ -51,11 +51,13 @@ class PuestoController extends Controller
 
         try {
 
-            
             $campos = request()->all();
             $campos['estado'] = estado($campos['estado']);
+
             $puesto = (new Puesto);
-            $puesto->create($campos);
+            
+            $puesto->create($campos)->sector()->attach($campos['sector_id']);
+            
 
             return \Response::json(['status'=>0,'descripcion'=>'Nuevo puesto agregado','data'=>\json_encode($puesto)]); 
         } catch (\Throwable $th) {
