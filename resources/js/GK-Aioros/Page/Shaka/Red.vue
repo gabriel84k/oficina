@@ -98,25 +98,7 @@
                                 <Puesto :puesto="puesto" @ResultPT="dataEmpleado"></Puesto>
                             </v-card>
                         </v-col>
-                        <v-col cols="4" >
-                            <v-card
-                                elevation="24"
-                                max-width="100%"
-                                class="mx-auto"
-                            >
-                                <v-app-bar  elevation="1">
-                                    <v-col cols="8"> 
-                                         Empleados
-                                    </v-col>
-                                    <v-col cols="4"> 
-                                        <CrudEmpleado :empleado="empleado" :tipo="'Nuevo'"></CrudEmpleado>
-                                    </v-col>
-                                </v-app-bar>
-                               
-                                <Empleado :empleado="empleado" @result="dataTarea"></Empleado>
-                            
-                            </v-card>
-                        </v-col>
+                       
                         <v-col cols="4" >
                             <v-card
                                 elevation="24"
@@ -132,6 +114,25 @@
                                 </v-col> 
                             </v-app-bar>
                                 <Tarea :tarea="tarea" ></Tarea>
+                            
+                            </v-card>
+                        </v-col>
+                         <v-col cols="4" >
+                            <v-card
+                                elevation="24"
+                                max-width="100%"
+                                class="mx-auto"
+                            >
+                                <v-app-bar  elevation="1">
+                                    <v-col cols="8"> 
+                                         Empleados
+                                    </v-col>
+                                    <v-col cols="4"> 
+                                        <CrudEmpleado :empleado="empleado" :tipo="'Nuevo'"></CrudEmpleado>
+                                    </v-col>
+                                </v-app-bar>
+                               
+                                <Empleado :empleado="empleado" @result="dataTarea"></Empleado>
                             
                             </v-card>
                         </v-col>

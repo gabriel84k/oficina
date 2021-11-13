@@ -51,11 +51,41 @@
                         <v-select
                           v-model="vpuesto.estado"
                           :items="vpuesto.estado"
+                          item-text="nombre"
+                          item-value="id"
                           :rules="[v => !!v || 'Se requiere un Estado']"
                           label="Estado"
                           required
                         ></v-select>
                                     
+                    </v-col>
+                    <v-col cols="12" md="6">
+                      <v-container fluid>
+                        <v-combobox
+                          v-model="vpuesto.sector"
+                          :items="itemsSector"
+                          :search-input.sync="search"
+                          :hint="'Sector que se asocia al Pesto'"
+                          hide-selected
+                          label="Seleccionar Sector"
+                          single-line
+                          return-object
+                          persistent-hint
+                          small-chips
+                          item-text="nombre"
+                          item-value="id"
+                        >
+                          <template v-slot:no-data>
+                            <v-list-item>
+                              <v-list-item-content>
+                                <v-list-item-title>
+                                  No results matching "<strong>{{ search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </template>
+                        </v-combobox>
+                      </v-container>
                     </v-col>
                 </v-row>
               
@@ -84,13 +114,20 @@ export default {
   props: ['puesto','tipo'],
   data() {
     return {
-     
+      itemsSector: [{ nombre: 'prueba', id: '1' },
+                    { nombre: 'otra', id: '2' },
+                    { nombre: 'nueva', id: '3' },
+                  ],
+      
+      search: null,
+      page:'/home/Shaka/Red/Sector/listaCombobox',
       alerta: { mensaje: "", visible: false, tipo: 0 },
       vpuesto:{
               nombre:'', 
               detalle:'',
               valid:true,
-              estado:['Activo', 'Inactivo']
+              estado:['Activo', 'Inactivo'],
+              sector:''
           },
       
     }
@@ -98,7 +135,12 @@ export default {
   watch:{
     puesto(s){
       this.dialog = s.visible
-    }
+      
+    },
+    
+  },
+  mounted() {
+    this.listSector()
   },
   methods: {
         nuevo(){
@@ -108,6 +150,7 @@ export default {
             formData.append('nombre', this.vpuesto.nombre)
             formData.append('descripcion', this.vpuesto.detalle)
             formData.append('estado', this.vpuesto.estado)
+            formData.append('sector_id', this.vpuesto.sector.id)
             
             this.load=true
             try {
@@ -142,7 +185,15 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-      
+        },
+        listSector(){
+          axios.get(this.page)
+                .then((response) => {
+                    this.itemsSector = response.data
+                }).catch((error) => {
+                
+                })
+                .finally(() => false);
         },
         closealert() {
             this.puesto.visible = false;
