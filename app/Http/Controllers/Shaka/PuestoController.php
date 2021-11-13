@@ -110,4 +110,8 @@ class PuestoController extends Controller
     {
         //
     }
+    public function listarCombo(){
+        $puesto = Puesto::combobox();
+        return $puesto;
+    }
 }
