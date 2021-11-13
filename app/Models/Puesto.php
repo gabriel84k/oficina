@@ -19,7 +19,7 @@ class Puesto extends Model
     protected $fillable = [
         'id',
         'nombre',
-        'detalle',
+        'descripcion',
         'estado',
     ];
 
@@ -50,7 +50,10 @@ class Puesto extends Model
         {
             return $this->belongsToMany(Personal::class,'reds')->withPivot('personal_id');
         }
-       
+        public function sector(){
+            
+            return $this->belongsToMany(Sector::class,'spt')->withPivot('sector_id');
+        }
 
 
 }

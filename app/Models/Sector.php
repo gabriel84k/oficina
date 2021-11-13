@@ -53,5 +53,10 @@ class Sector extends Model
             return $this->belongsToMany(Puesto::class,'spt')->withPivot('puesto_id');
         }
        
+    # [Funciones especificas del Modelo] #
 
+        public static function combobox(){
+            $sector = Sector::select('nombre','id')->get();
+            return $sector;
+        }
 }
