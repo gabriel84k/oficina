@@ -70,6 +70,14 @@ export default {
             ]
         }
     },
+    watch:{
+        object(o){
+            console.log('watch', o)
+        }
+    },
+    mounted() {
+        console.log('mount', object)
+    },
     components:{
         CssVuetable,
         SPT

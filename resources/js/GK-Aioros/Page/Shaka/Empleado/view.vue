@@ -37,7 +37,7 @@
                                     <template slot="accion" slot-scope="props">
                                         
                                         <div class="row text-center" >
-                                            <CrudEmpleado :empleado="props.Rowdata" v-if="permiso.modificar" :tipo="'Modificando'"></CrudEmpleado>
+                                            <CrudEmpleado :empleado="props.rowData" v-if="permiso.modificar" :tipo="'Modificando'"></CrudEmpleado>
                                             <v-btn
                                                 v-if="true"
                                                 class="mx-2" 
