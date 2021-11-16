@@ -9,4 +9,15 @@
                 
         }
     }
+    # [Personal Temporal] #
+    function temporal($e){
+        switch ($e) {
+            case 'true':
+                return true;
+            
+            case 'false':
+                return false;
+                
+        }
+    }
 ?>
