@@ -17,9 +17,8 @@ class Personal extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'nombreApellido',
-        'edad',
+        'dni',
         'domicilio',
         'telefono' ,
         'observacion' ,
@@ -62,12 +61,17 @@ class Personal extends Model
     }
     public function puesto()
     {
-        return $this->belongsToOne(Puesto::class,'reds')->withPivot('puesto_id');
+        return $this->belongsToMany(Puesto::class,'reds')->withPivot('puesto_id');
     }
+    
     public function tarea()
     {
         return $this->belongsToMany(Tarea::class,'reds')->withPivot('tarea_id');
     }
-    
+
+    public function red(){
+        return $this->belongsToMany(Red::class,'reds')->withPivot(['personal_id','puesto_id','tarea_id']);
+    }
+  
 
 }
