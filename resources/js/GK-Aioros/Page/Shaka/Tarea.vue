@@ -36,8 +36,11 @@ export default {
     },
     watch:{
         tarea(p){
-           
+           console.log(p)
         }
+    },
+    mounted(){
+        console.log(this.tarea)
     },
     
     methods: {

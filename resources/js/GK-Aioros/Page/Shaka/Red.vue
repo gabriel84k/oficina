@@ -11,7 +11,7 @@
                     width="310"
                     class="mx-auto"
                     style="cursos:pointer"
-                    @click="selectPuesto(item.puesto)"
+                    @click="selectPuesto(item.puesto, item.id)"
                 >
                     
                     <v-app-bar  elevation="0" outlined color="white" light>
@@ -110,10 +110,10 @@
                                     Tareas
                                 </v-col>
                                 <v-col cols="4"> 
-                                    <CrudTarea :tarea="tarea" :tipo="'Nuevo'"></CrudTarea>
+                                    <CrudTarea :tarea="tarea" :tipo="'Nuevo'" :idSector="idSector"></CrudTarea>
                                 </v-col> 
                             </v-app-bar>
-                                <Tarea :tarea="tarea" ></Tarea>
+                                <Tarea :tarea="tarea" :tipo="'Modificando'"></Tarea>
                             
                             </v-card>
                         </v-col>
@@ -158,6 +158,7 @@ export default {
         return {
             cyrcle:true,
             red:[],
+            idSector:'',
             sector:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Sector/data'},
             puesto:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Puesto/data',data:[]},
             empleado:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Empleado/data',data:[]},
@@ -192,8 +193,9 @@ export default {
                 .finally(() => false);
          
         },
-        selectPuesto (puesto){
-            
+        selectPuesto (puesto,idSector){
+        
+            this.idSector = idSector
             if(puesto.length > 0){
                 this.puesto.data = puesto
             }else{
@@ -205,13 +207,12 @@ export default {
            
         },
         dataEmpleado(empleado){
-            console.log('empleado',empleado)
-            if(empleado[0].length > 0){
-                this.empleado.data = empleado[0]
-            }else{
-                this.empleado.data = []
-                this.tarea.data = []
-            }
+            console.log('empleado',empleado[0])
+            console.log('tarea',empleado[1])
+            this.empleado.data = []    
+            this.tarea.data = []
+            if (empleado[1].length > 0){this.tarea.data = empleado[1]}
+            if(empleado[0].length > 0){this.empleado.data = empleado[0]}
             
         },
         dataTarea(tarea){
