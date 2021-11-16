@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shaka;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Tarea;
 
@@ -37,7 +38,29 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            
+        ]);
+        if ($validator->fails()) {
+            return \Response::json(['status'=>-1,'errors'=>$validator->errors(),'descripcion'=>'']);
+        }
+
+        try {
+
+            $campos = request()->all();
+            $campos['estado'] = estado($campos['estado']);
+
+            $puesto = (new Tarea);
+            
+            $puesto->create($campos)->puesto()->sync($campos['puesto_id']);
+            
+
+            return \Response::json(['status'=>0,'descripcion'=>'Nueva Tarea agregado','data'=>\json_encode($puesto)]); 
+        } catch (\Throwable $th) {
+            return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo puesto','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
+        }
     }
 
     /**
@@ -48,7 +71,7 @@ class TareaController extends Controller
      */
     public function show($id)
     {
-        $tarea = Tarea::find($id);
+        $tarea = Tarea::with('personal')->find($id);
         return \Response::json(['status'=>0,'descripcion'=>'Listado de Tarea','data'=>$tarea]);
     }
 
