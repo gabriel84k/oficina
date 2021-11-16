@@ -130,7 +130,7 @@
                           >
                             <template v-slot:activator="{ on, attrs }">
                               <v-text-field
-                                v-model="date"
+                                v-model="vempleado.fechaingreso"
                                 label="Fecha de Ingreso"
                                 prepend-icon="mdi-calendar"
                                 readonly
@@ -139,7 +139,7 @@
                               ></v-text-field>
                             </template>
                             <v-date-picker
-                              v-model="date"
+                              v-model="vempleado.fechaingreso"
                               @input="menu2 = false"
                             ></v-date-picker>
                           </v-menu>
@@ -150,7 +150,7 @@
                 <v-divider></v-divider>
                 <v-row>
                   <v-col cols="12" md="12">
-                    <VincualacionPT :object="object" :title="'Vinculación de Puestos y Tareas'"/>
+                    <VincualacionPT :object="object" :title="'Vinculación de Puestos y Tareas'" @resultado="vinculacion"/>
                   </v-col>
                 </v-row>
                 <v-divider></v-divider>
@@ -195,7 +195,7 @@ export default {
               telefono: '', 
               observacion :'',
               nrolegajo:'',
-              fechaingreso:'',
+              fechaingreso:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
               qr:'',
               foto :'', 
               temporal: '', 
@@ -204,8 +204,10 @@ export default {
               empresa_id: ''
               
           },
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      vincul:{sector:'',puesto:'',tarea:''},
+      
       menu2: false,
+      page:'/home/Shaka/Red/Empleado/data',
       object:[],
       
     }
@@ -225,14 +227,28 @@ export default {
       
         nuevo(){
             let formData = new FormData();
-            formData.append('nombre', this.vempleado.nombre)
-            formData.append('descripcion', this.vempleado.descripcion)
+            formData.append('nombreApellido', this.vempleado.nombreApellido)
+            formData.append('dni', this.vempleado.dni)
+            formData.append('domicilio', this.vempleado.domicilio)
+            formData.append('telefono', this.vempleado.telefono)
+            formData.append('observacion', this.vempleado.observacion)
+            formData.append('nrolegajo', this.vempleado.nrolegajo)
+            formData.append('fechaingreso', this.vempleado.fechaingreso)
+            formData.append('qr', this.vempleado.dni)
+            formData.append('foto', this.vempleado.foto)
+            formData.append('temporal', this.vempleado.temporal)
             formData.append('estado', this.vempleado.estado)
+
+            formData.append('user_id', this.vempleado.user_id)
+            formData.append('empresa_id', this.vempleado.empresa_id)
             
+            formData.append('red', JSON.stringify(this.vincul))
+            
+
             this.load=true
             try {
                 axios
-                .post(this.empleado.page, formData)
+                .post(this.page, formData)
                 .then((response) => {
                     
                     if (response.data.status == 0) {
@@ -262,7 +278,9 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-      
+        },
+        vinculacion(v){
+          this.vincul = v
         },
         closealert() {
            
