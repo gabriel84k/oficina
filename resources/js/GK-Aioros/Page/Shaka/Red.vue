@@ -11,7 +11,7 @@
                     width="310"
                     class="mx-auto"
                     style="cursos:pointer"
-                    @click="selectPuesto(item.puesto)"
+                    @click="selectPuesto(item.puesto,idSector = item.id)"
                 >
                     
                     <v-app-bar  elevation="0" outlined color="white" light>
@@ -110,7 +110,7 @@
                                     Tareas
                                 </v-col>
                                 <v-col cols="4"> 
-                                    <CrudTarea :tarea="tarea" :tipo="'Nuevo'"></CrudTarea>
+                                    <CrudTarea :tarea="tarea" :tipo="'Nuevo'" :idSector="idSector"></CrudTarea>
                                 </v-col> 
                             </v-app-bar>
                                 <Tarea :tarea="tarea" ></Tarea>
@@ -158,6 +158,7 @@ export default {
         return {
             cyrcle:true,
             red:[],
+            idSector:0,
             sector:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Sector/data'},
             puesto:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Puesto/data',data:[]},
             empleado:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Empleado/data',data:[]},
@@ -192,7 +193,9 @@ export default {
                 .finally(() => false);
          
         },
-        selectPuesto (puesto){
+        selectPuesto (puesto,idSector){
+            
+            this.idSector = idSector
             
             if(puesto.length > 0){
                 this.puesto.data = puesto

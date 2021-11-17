@@ -61,7 +61,7 @@
     watch:{
       msj(v) {
           this.m=v 
-          this.dialog.value =true
+         
       }
     },
     mounted() {

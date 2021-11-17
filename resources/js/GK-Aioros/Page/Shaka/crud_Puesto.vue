@@ -51,8 +51,6 @@
                         <v-select
                           v-model="vpuesto.estado"
                           :items="vpuesto.estado"
-                          item-text="nombre"
-                          item-value="id"
                           :rules="[v => !!v || 'Se requiere un Estado']"
                           label="Estado"
                           required
@@ -114,10 +112,7 @@ export default {
   props: ['puesto','tipo'],
   data() {
     return {
-      itemsSector: [{ nombre: 'prueba', id: '1' },
-                    { nombre: 'otra', id: '2' },
-                    { nombre: 'nueva', id: '3' },
-                  ],
+      itemsSector: [{ nombre: 'prueba', id: '1' }],
       
       search: null,
       page:'/home/Shaka/Red/Sector/listaCombobox',

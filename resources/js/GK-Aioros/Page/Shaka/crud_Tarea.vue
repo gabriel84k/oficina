@@ -12,7 +12,7 @@
           v-bind="attrs"
           v-on="on"
           :color="(tipo == 'Nuevo')?'green':'cyan'"
-          @click="listar"
+          
         >
             <v-icon v-if="(tipo == 'Modificando')" dark outlined> mdi-pencil </v-icon>
             <v-icon v-else outlined>mdi-plus</v-icon>
@@ -21,7 +21,7 @@
       </template>
 
       <v-card>
-        <v-card-title class="blue lighten-1 text-white"> tarea </v-card-title>
+        <v-card-title class="blue lighten-1 text-white">{{tipo}} Tarea </v-card-title>
 
         <v-card-text>
           <template>
@@ -109,7 +109,8 @@ export default {
   props: ['tarea','tipo','idSector'],
   data() {
     return {
-      itemsPuesto: [ ],
+      load:false,
+      itemsPuesto: [{nombre:'',id:0}],
       search: null,
       page:'/home/Shaka/Red/Puesto/listaCombobox',
       alerta: { mensaje: "", visible: false, tipo: 0 },
@@ -118,18 +119,22 @@ export default {
               descripcion:'',
               estado:['Activo','Inactivo'],
               puesto:'',
-              sector:this.idSector
+              sector:''
           },
       
     }
   },
   watch:{
-    tarea(s){
+    idSector(s){
+      
+      this.vtarea.sector = this.idSector
       this.dialog = s.visible
-      this.listPuesto()
+      
     }
   },
   mounted() {
+    
+    this.listPuesto()
     
   },
   methods: {
@@ -139,8 +144,8 @@ export default {
             formData.append('nombre', this.vtarea.nombre)
             formData.append('descripcion', this.vtarea.descripcion)
             formData.append('estado', this.vtarea.estado)
-            formData.append('puesto_id', this.vpuesto.puesto.id)
-            formData.append('sector_id', this.vpuesto.sector)
+            formData.append('puesto_id', this.vtarea.puesto.id)
+            formData.append('sector_id', this.vtarea.sector)
             
             this.load=true
             try {
@@ -177,6 +182,7 @@ export default {
             }
         },
         listPuesto(){
+          
           axios.get(this.page)
                 .then((response) => {
                     this.itemsPuesto= response.data
