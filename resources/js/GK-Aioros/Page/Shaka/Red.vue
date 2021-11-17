@@ -95,7 +95,7 @@
                                     </v-col>
                                 </v-app-bar>
                                
-                                <Puesto :puesto="puesto" @ResultPT="dataEmpleado"></Puesto>
+                                <Puesto :puesto="puesto" @ResultPT="dataTarea"></Puesto>
                             </v-card>
                         </v-col>
                        
@@ -113,7 +113,7 @@
                                     <CrudTarea :tarea="tarea" :tipo="'Nuevo'" :idSector="idSector"></CrudTarea>
                                 </v-col> 
                             </v-app-bar>
-                                <Tarea :tarea="tarea" :tipo="'Modificando'"></Tarea>
+                                <Tarea :tarea="tarea" :tipo="'Modificando'" @result="dataEmpleado"></Tarea>
                             
                             </v-card>
                         </v-col>
@@ -132,7 +132,7 @@
                                     </v-col>
                                 </v-app-bar>
                                
-                                <Empleado :empleado="empleado" @result="dataTarea"></Empleado>
+                                <Empleado :empleado="empleado" ></Empleado>
                             
                             </v-card>
                         </v-col>
@@ -198,21 +198,21 @@ export default {
             
             if(puesto.length > 0){
                 this.tarea.data = []
+                this.puesto.data = puesto
             }
             
            
         },
         dataEmpleado(empleado){
-            console.log('empleado',empleado[0])
-            console.log('tarea',empleado[1])
-            this.empleado.data = []    
-            this.tarea.data = []
-            if (empleado[1].length > 0){this.tarea.data = empleado[1]}
-            if(empleado[0].length > 0){this.empleado.data = empleado[0]}
+            
+            this.empleado.data = empleado.personal
             
         },
         dataTarea(tarea){
-            this.tarea.data = tarea
+            
+            this.empleado.data = []    
+            this.tarea.data = []
+            this.tarea.data = tarea[1]
         },
        
     },

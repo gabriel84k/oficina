@@ -14,7 +14,7 @@
                 <v-list-item-content>
                     <v-list-item-title>
                         <v-col cols="12" align="center">
-                            <!--<CrudPuesto :puesto="puesto" :tipo="'Modificando'"></CrudPuesto>-->
+                            <CrudPuesto :puesto="puesto" :tipo="'Modificando'"></CrudPuesto>
                         </v-col>
                     </v-list-item-title>
                 </v-list-item-content>
