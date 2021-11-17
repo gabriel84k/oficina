@@ -63,7 +63,7 @@
                           :search-input.sync="search"
                           :hint="'Puesto que se asocia al Tarea'"
                           hide-selected
-                          label="Seleccionar Tarea"
+                          label="Seleccionar Puesto"
                           single-line
                           return-object
                           persistent-hint
@@ -133,6 +133,7 @@ export default {
     }
   },
   mounted() {
+    this.listPuesto()
     
     this.listPuesto()
     

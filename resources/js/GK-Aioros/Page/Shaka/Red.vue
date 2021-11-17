@@ -113,7 +113,7 @@
                                     <CrudTarea :tarea="tarea" :tipo="'Nuevo'" :idSector="idSector"></CrudTarea>
                                 </v-col> 
                             </v-app-bar>
-                                <Tarea :tarea="tarea" ></Tarea>
+                                <Tarea :tarea="tarea" :tipo="'Modificando'"></Tarea>
                             
                             </v-card>
                         </v-col>
@@ -194,27 +194,21 @@ export default {
          
         },
         selectPuesto (puesto,idSector){
-            
             this.idSector = idSector
             
             if(puesto.length > 0){
-                this.puesto.data = puesto
-            }else{
-                this.puesto.data = []
-                this.empleado.data = []
                 this.tarea.data = []
             }
             
            
         },
         dataEmpleado(empleado){
-            console.log('empleado',empleado)
-            if(empleado[0].length > 0){
-                this.empleado.data = empleado[0]
-            }else{
-                this.empleado.data = []
-                this.tarea.data = []
-            }
+            console.log('empleado',empleado[0])
+            console.log('tarea',empleado[1])
+            this.empleado.data = []    
+            this.tarea.data = []
+            if (empleado[1].length > 0){this.tarea.data = empleado[1]}
+            if(empleado[0].length > 0){this.empleado.data = empleado[0]}
             
         },
         dataTarea(tarea){

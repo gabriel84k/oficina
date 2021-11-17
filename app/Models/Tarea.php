@@ -42,8 +42,14 @@ class Tarea extends Model
     ];
     # [ Relaciones ] #
     
-       
-
+    public function puesto()
+    {
+        return $this->belongsToMany(Puesto::class,'spt')->withPivot('puesto_id');
+    }
+    public function personal()
+    {
+        return $this->belongsToMany(Personal::class,'reds')->withPivot('personal_id');
+    }
 
 }
 

@@ -70,14 +70,6 @@ export default {
             ]
         }
     },
-    watch:{
-        object(o){
-            console.log('watch', o)
-        }
-    },
-    mounted() {
-        console.log('mount', object)
-    },
     components:{
         CssVuetable,
         SPT
@@ -92,6 +84,8 @@ export default {
                             tarea:{id:s.tarea.id,nombre:s.tarea.nombre}
                         }
                 this.arraySPT.push(STP)
+               
+                this.$emit('resultado',this.arraySPT)
             }
             
       },
@@ -99,6 +93,7 @@ export default {
             let i = this.arraySPTindex.indexOf(String(e.sector.id)+String(e.puesto.id)+String(e.tarea.id))
             this.arraySPTindex.splice(i,1);
             this.arraySPT.splice(i,1);
+            this.$emit('resultado',this.arraySPT) 
       }
     },
     

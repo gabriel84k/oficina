@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Shaka;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Funciones\Funciones;
 
-use App\Models\Tarea;
+use App\Models\Puesto;
 
-class TareaController extends Controller
+class PuestoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +19,7 @@ class TareaController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -52,12 +54,12 @@ class TareaController extends Controller
             $campos = request()->all();
             $campos['estado'] = estado($campos['estado']);
 
-            $puesto = (new Tarea);
+            $puesto = (new Puesto);
             
-            $puesto->create($campos)->puesto()->sync($campos['puesto_id']);
+            $puesto->create($campos)->sector()->attach($campos['sector_id']);
             
 
-            return \Response::json(['status'=>0,'descripcion'=>'Nueva Tarea agregado','data'=>\json_encode($puesto)]); 
+            return \Response::json(['status'=>0,'descripcion'=>'Nuevo puesto agregado','data'=>\json_encode($puesto)]); 
         } catch (\Throwable $th) {
             return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo puesto','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
         }
@@ -71,8 +73,8 @@ class TareaController extends Controller
      */
     public function show($id)
     {
-        $tarea = Tarea::with('personal')->find($id);
-        return \Response::json(['status'=>0,'descripcion'=>'Listado de Tarea','data'=>$tarea]);
+        $puesto = Puesto::with(['personal.tarea', 'tarea'])->find($id);
+        return \Response::json(['status'=>0,'descripcion'=>'Listados de Empleados por puestos y tareas por empleados','data'=>$puesto]);
     }
 
     /**
@@ -107,5 +109,11 @@ class TareaController extends Controller
     public function destroy($id)
     {
         //
+    }
+   
+
+    public function listarCombo(){
+        $puesto = Puesto::combobox();
+        return $puesto;
     }
 }

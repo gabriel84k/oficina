@@ -71,7 +71,7 @@ class TareaController extends Controller
      */
     public function show($id)
     {
-        $tarea = Tarea::with('personal')->find($id);
+        $tarea = Tarea::find($id);
         return \Response::json(['status'=>0,'descripcion'=>'Listado de Tarea','data'=>$tarea]);
     }
 

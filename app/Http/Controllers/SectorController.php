@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Shaka;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-use App\Models\Tarea;
-
-class TareaController extends Controller
+use App\Models\Empresa;
+use App\Models\Sector;
+class SectorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,11 @@ class TareaController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $empresa = $user->empresa;
+        return \Response::json(['status'=>0,'descripcion'=>'Empresa','data'=>$empresa->with('sector.puesto')->get()]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -49,18 +52,20 @@ class TareaController extends Controller
 
         try {
 
+            $user = Auth::user();
             $campos = request()->all();
-            $campos['estado'] = estado($campos['estado']);
-
-            $puesto = (new Tarea);
+           
+            $campos['empresa_id'] = $user->empresa->id;
             
-            $puesto->create($campos)->puesto()->sync($campos['puesto_id']);
+            $sector = (new Sector);
+            $sector->create($campos);
             
 
-            return \Response::json(['status'=>0,'descripcion'=>'Nueva Tarea agregado','data'=>\json_encode($puesto)]); 
+            return \Response::json(['status'=>0,'descripcion'=>'Nuevo sector agregado','data'=>\json_encode($sector)]); 
         } catch (\Throwable $th) {
-            return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo puesto','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
+            return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo Sector','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
         }
+        
     }
 
     /**
@@ -71,8 +76,7 @@ class TareaController extends Controller
      */
     public function show($id)
     {
-        $tarea = Tarea::with('personal')->find($id);
-        return \Response::json(['status'=>0,'descripcion'=>'Listado de Tarea','data'=>$tarea]);
+        //
     }
 
     /**
@@ -107,5 +111,10 @@ class TareaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listarCombo(){
+        $sector = Sector::combobox();
+        return $sector;
     }
 }
