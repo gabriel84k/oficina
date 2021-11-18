@@ -97,7 +97,31 @@ class PuestoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      
+
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            
+        ]);
+        if ($validator->fails()) {
+            return \Response::json(['status'=>-1,'errors'=>$validator->errors(),'descripcion'=>'']);
+        }
+
+        try {
+            $campos = request()->all();
+            $campos['estado'] = estado($campos['estado']);
+            
+            $puesto = Puesto::find($id);
+            
+            $puesto->update($campos);
+            
+            $puesto->sector()->sync($campos['sector_id']);
+
+            return \Response::json(['status'=>0,'descripcion'=>'Nuevo puesto agregado','data'=>\json_encode($puesto)]); 
+        } catch (\Throwable $th) {
+            return \Response::json(['status'=>-1,'descripcion'=>'Error En la Carga del Nuevo puesto','data'=>'error:'.$th->getMessage().' Linea:'. $th->getLine()]); 
+        }
     }
 
     /**

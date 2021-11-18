@@ -16,7 +16,7 @@
                     <v-list-item-content>
                         <v-list-item-title>
                             <v-col cols="12" align="center">
-                                <CrudEmpleado :empleado="empleado" :tipo="'Nuevo'"></CrudEmpleado>
+                                <CrudEmpleado :empleado="empleado" :tipo="'Modificando'"></CrudEmpleado>
                             </v-col>
                         </v-list-item-title>
                     </v-list-item-content>
@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-
+import CrudEmpleado from './crud_Empleado.vue'
 export default {
     props:['empleado'],
     data() {
@@ -41,6 +41,7 @@ export default {
         },
        
     },
+    components:{CrudEmpleado},
     methods: {
         
         selectEmpleado(idEmpleado){

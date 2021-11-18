@@ -6,25 +6,27 @@
                     
                      <v-icon outlined>mdi-tournament</v-icon>
                 </v-list-item-avatar>
-                <v-list-item-content>
-                    <v-list-item-title>{{itemPuesto.nombre}}</v-list-item-title>
-                    <v-list-item-subtitle>{{itemPuesto.descripcion}}</v-list-item-subtitle>
-
-                </v-list-item-content>
-                <v-list-item-content>
-                    <v-list-item-title>
-                        <v-col cols="12" align="center">
-                            <CrudPuesto :puesto="puesto" :tipo="'Modificando'"></CrudPuesto>
-                        </v-col>
-                    </v-list-item-title>
-                </v-list-item-content>
-                
+               
+                    <v-list-item-content>
+                       
+                        <v-list-item-title>{{itemPuesto.nombre}}</v-list-item-title>
+                        <v-list-item-subtitle>{{itemPuesto.descripcion}}</v-list-item-subtitle>
+                        
+                    </v-list-item-content>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            <v-col cols="12" align="center">
+                               <CrudPuesto :puesto="itemPuesto" :tipo="'Modificando'" ></CrudPuesto>
+                            </v-col>
+                        </v-list-item-title>
+                    </v-list-item-content>
             </v-list-item>
         </v-list>
     </div>
 </template>
 <script>
 
+import CrudPuesto from './crud_Puesto.vue'
 export default {
     name: 'Puesto',
     props:['puesto'],
@@ -38,6 +40,7 @@ export default {
            
         }
     },
+    components:{CrudPuesto},
     
     methods: {
         

@@ -15,7 +15,7 @@
                 <v-list-item-content>
                     <v-list-item-title>
                         <v-col cols="12" align="center">
-                            <!--<CrudTarea :tarea="tarea" :tipo="'Modificando'"></CrudTarea>-->
+                            <CrudTarea :tarea="tarea" :tipo="'Modificando'"></CrudTarea>
                         </v-col>
                     </v-list-item-title>
                 </v-list-item-content>
@@ -25,7 +25,7 @@
     </div>
 </template>
 <script>
-
+import CrudTarea from './crud_Tarea.vue'
 export default {
     name: 'Tarea',
     props:['tarea'],
@@ -42,7 +42,7 @@ export default {
     mounted(){
        
     },
-    
+    components:{CrudTarea},
     methods: {
         
         selectTarea(idTarea){

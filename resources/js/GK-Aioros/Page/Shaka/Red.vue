@@ -11,7 +11,7 @@
                     width="310"
                     class="mx-auto"
                     style="cursos:pointer"
-                    @click="selectPuesto(item.puesto,idSector = item.id)"
+                    @click="selectPuesto(item,idSector = item.id)"
                 >
                     
                     <v-app-bar  elevation="0" outlined color="white" light>
@@ -160,7 +160,7 @@ export default {
             red:[],
             idSector:0,
             sector:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Sector/data'},
-            puesto:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Puesto/data',data:[]},
+            puesto:{visible:false, tipo:'Nuevo', data:[]},
             empleado:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Empleado/data',data:[]},
             tarea:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Tarea/data',data:[]},
             page:'/home/Shaka/Red/Sector/data'
@@ -184,32 +184,26 @@ export default {
 
             axios.get(this.page)
                 .then((response) => {
-                    console.log('Red')
-                    console.log(response.data.data)
                     this.red = response.data.data
                 }).catch((error) => {
                 
                 })
                 .finally(() => false);
-         
         },
-        selectPuesto (puesto,idSector){
+        selectPuesto (item,idSector){
             this.idSector = idSector
-            
-            if(puesto.length > 0){
+            console.log('sector item', item)
+            if(item.puesto.length > 0){
                 this.tarea.data = []
-                this.puesto.data = puesto
+                this.puesto.data = item.puesto
+                this.puesto.data.sector = item.nombre
+                this.puesto.data.idsector = item.id
             }
-            
-           
         },
         dataEmpleado(empleado){
-            
             this.empleado.data = empleado.personal
-            
         },
         dataTarea(tarea){
-            
             this.empleado.data = []    
             this.tarea.data = []
             this.tarea.data = tarea[1]
