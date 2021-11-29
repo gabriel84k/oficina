@@ -98,7 +98,7 @@
           <v-spacer></v-spacer>
           <msjAlerta :msj="alerta"></msjAlerta>
           <v-btn color="primary" text @click="closealert()"> Salir </v-btn>
-          <v-btn v-if="(tipo == 'Nuevo')" color="primary" text @click="nuevo(this.vpuesto.page)"> Guardar </v-btn>
+          <v-btn v-if="(tipo == 'Nuevo')" color="primary" text @click="nuevo(vpuesto.page)"> Guardar </v-btn>
           <v-btn v-else color="primary" text @click="modificacion(vpuesto.page +'/'+vpuesto.id)"> Modificar </v-btn>
         </v-card-actions>
       </v-card>

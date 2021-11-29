@@ -66,8 +66,6 @@ class EmpleadoController extends Controller
                     $Reds = (new Red);
                     $Reds->create(['personal_id'=>$empleado->id,'puesto_id'=>$value->puesto->id,'tarea_id'=>$value->tarea->id]);    
                 }
-                                
-                
                
             }
             \DB::commit();

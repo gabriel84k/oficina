@@ -32,7 +32,7 @@ export default {
     props:['puesto'],
     data() {
         return {
-            
+            page:'/home/Shaka/Red/Puesto/data'
         }
     },
     watch:{
@@ -45,7 +45,7 @@ export default {
     methods: {
         
         selectEmpleadoTarea(Puesto){
-            axios.get(this.puesto.page+'/'+Puesto.id)
+            axios.get(this.page+'/'+Puesto.id)
                 .then((response) => {
                     this.$emit('ResultPT',[response.data.data.personal,response.data.data.tarea,{id:Puesto.id,nombre:Puesto.nombre}])
                     

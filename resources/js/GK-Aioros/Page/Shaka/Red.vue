@@ -160,7 +160,7 @@ export default {
             red:[],
             idSector:0,
             sector:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Sector/data'},
-            puesto:{visible:false, tipo:'Nuevo', data:[]},
+            puesto:{visible:false, tipo:'Nuevo',data:[]},
             empleado:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Empleado/data',data:[]},
             tarea:{visible:false, tipo:'Nuevo', page:'/home/Shaka/Red/Tarea/data',data:[]},
             page:'/home/Shaka/Red/Sector/data'
