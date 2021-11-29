@@ -1,5 +1,4 @@
 
-application/x-httpd-php FortifyServiceProvider.php ( C++ source, ASCII text )
 <?php
 
 namespace App\Providers;
